@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white active " href="./pages/dashboard.html">
+                <a class="nav-link text-white active {{ Request::url() === route('admin') ? 'bg-gradient-primary' : '' }}" href="{{ route('admin') }}">
                     <span class="nav-link-text ms-1">Posts</span>
                 </a>
             </li>

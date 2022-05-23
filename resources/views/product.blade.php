@@ -28,7 +28,7 @@
                     </h1>
                     <img src="{{ $pr->image_url }}" alt="poster img" class="w-100">
                     <div class="mt-5">
-                        {!! $pr->text !!}
+                        {!! html_entity_decode($pr->text) !!}
                     </div>
                 </div>
 

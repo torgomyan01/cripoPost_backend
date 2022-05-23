@@ -46,7 +46,7 @@ class newsController extends Controller
         $query = DB::table('news_tb')
             ->where('id', '>', $page || 1)
             ->orderByRaw('position DESC, id DESC')
-            ->paginate(3);
+            ->paginate(15);
         return view('home', [
             'posts' => $query
         ]);

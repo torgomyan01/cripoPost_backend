@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-start ">
                         <div class="img-block me-3" style="background-image: url({{ $post->image_url }})"> </div>
                         <div class="pe-5">
-                            <a href="/news/{{ $post->id }}">
+                            <a target="_blank" href="/news/{{ $post->id }}">
                                 <h3 class="mt-2 fs-5">
                                     {{  Str::limit($post->title, 80) }}
                                 </h3>

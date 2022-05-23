@@ -18,10 +18,7 @@ class BannersController extends Controller
      */
     public function create(Request $request)
     {
-//        Storage::disk('local')->put('example.txt', 'Contents');
-//
-//        $contents = Storage::get('example.txt');
-//        return $contents;
+
         $query = DB::table('banners_tb')->insert([
             [
                 'image_url' => 'https://fb.com',

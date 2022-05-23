@@ -36,6 +36,8 @@ Route::get('/admin-panel/create', [AdminController::class, 'createPostPage'])->n
 Route::post('/admin-panel/post/clip', [AdminController::class, 'postClip'])->name('admin-post-clip');
 Route::post('/admin-panel/post/remove', [AdminController::class, 'removePost'])->name('admin-post-remove');
 
+Route::post('/admin-panel/post/create', [AdminController::class, 'createPost'])->name('admin-post-page');
+
 // ------------------ FOR ADMIN ------------------------------
 
 
