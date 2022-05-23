@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannersController;
 use App\Http\Controllers\newsController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,22 @@ Route::get('/', [newsController::class, 'homeGet'])->name('home');
 Route::get('/news/{productId}', [newsController::class, 'printProduct'])->name('news');
 
 Route::get('/crate-news', [newsController::class, 'create'])->name('create');
+
+
+Route::get('/crate-banners', [BannersController::class, 'create'])->name('crate-banners');
+
+
+// ------------------ FOR ADMIN ------------------------------
+
+Route::get('/admin-panel', [AdminController::class, 'admin'])->name('admin');
+Route::get('/admin-panel/create', [AdminController::class, 'createPostPage'])->name('create-post');
+
+Route::post('/admin-panel/post/clip', [AdminController::class, 'postClip'])->name('admin-post-clip');
+Route::post('/admin-panel/post/remove', [AdminController::class, 'removePost'])->name('admin-post-remove');
+
+// ------------------ FOR ADMIN ------------------------------
+
+
 
 
 Route::get('/traders-blog', function () {
