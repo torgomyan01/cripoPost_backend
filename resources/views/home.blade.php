@@ -1,4 +1,6 @@
 @extends('contentSite')
+
+@section('title')CriptoPost - Криптовалюты@endsection
 @section('content')
 
 

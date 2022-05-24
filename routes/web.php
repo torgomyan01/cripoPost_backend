@@ -31,6 +31,9 @@ Route::get('/crate-banners', [BannersController::class, 'create'])->name('crate-
 // ------------------ FOR ADMIN ------------------------------
 
 Route::get('/admin-panel', [AdminController::class, 'admin'])->name('admin');
+Route::post('/admin-panel/login', [AdminController::class, 'loginAdmin'])->name('admin-login');
+Route::get('/admin-panel/logout', [AdminController::class, 'logoutAdmin'])->name('admin-logout');
+
 Route::get('/admin-panel/banners', [BannersController::class, 'getBanners'])->name('banners');
 Route::get('/admin-panel/banner/{bannerId}', [BannersController::class, 'getBanner']);
 Route::post('/admin-panel/banner-update/{id}', [BannersController::class, 'update']);

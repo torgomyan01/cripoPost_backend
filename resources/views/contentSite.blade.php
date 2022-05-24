@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Все новости криптовалют, цифровой индустрии и рынков! Биткоин, блокчейн, криптовалюты, майнинг! Узнавайте первыми на CriptoPost">
+    <meta name="keywords" content="cripto,crypto,cripta,биткоин,сколько стоит биткоин,купить биткоин,что такое биткоин,1 биткоин в рублях,калькулятор биткоин,локал биткоинкак майнить биткоин, обменник биткоин,сколько стоил биткоин в 2009, биткоин акции, биткоин адрес, биткоин аналитика, биткоин аппарат, биткоин анализ, биткоин адрес кошелька,биткоин аппарат цена, биткоин автомат, биткоин адрес проверить, биткоин аккаунт, акции биткоин, аналитика биткоин, адрес биткоин кошелька, акции биткоин график, анонимный биткоин кошелек,асик биткоин, аппарат биткоин, аппаратный кошелек биткоин, амазон биткоин, адрес биткоин кошелька пример, биткоин биржа, биткоин банкомат, биткоин бинанс, биткоин банкомат москва,">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,8 +21,9 @@
     <link rel="stylesheet" href="{{ asset('css/helper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
-    <title>CriptoPost — Криптовалюты — All crypto news in one website</title>
+    <title>@yield('title')</title>
 
 </head>
 <body>

@@ -6,9 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use MongoDB\Driver\Session;
 
 class AdminController extends Controller
 {
@@ -22,14 +24,54 @@ class AdminController extends Controller
     {
         $page = $request->input('page');
 
+        $pass = session('pass');
+
         $query = DB::table('news_tb')
             ->where('id', '>', $page || 1)
             ->orderBy('id', 'DESC')
             ->paginate(10);
 
-        return view('admin.posts', [
-            'posts' => $query
-        ]);
+        if($pass === env('ADMIN_PASSWORD')){
+            return view('admin.posts', [
+                'posts' => $query
+            ]);
+        } else {
+            return view('admin.login');
+        }
+
+    }
+
+
+    /**
+     * Login Admin
+     *
+     * @param Request $request
+     * @return Application|Factory|View|RedirectResponse
+     */
+    public function loginAdmin(Request $request)
+    {
+       $pass = $request->password;
+
+        if($pass === env('ADMIN_PASSWORD')){
+            session()->put('pass', $pass);
+            return redirect()->route('admin');
+        } else {
+            return view('admin.login');
+        }
+    }
+
+
+    /**
+     * Login Admin
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function logoutAdmin(Request $request)
+    {
+
+        Session()->forget('pass');
+        return view('admin.login');
     }
 
     /**
@@ -140,6 +182,55 @@ class AdminController extends Controller
             return [
                 'code' => 415,
                 'data' => 0
+            ];
+        }
+
+    }
+
+
+    /**
+     * Remove post
+     *
+     * @param Request $request
+     * @return int[]
+     */
+    public function createPostApi(Request $request)
+    {
+
+        $id = $request->id;
+
+        $checkPost = DB::table('news_id')->where('news_id', $id)->first();
+
+        if(!$checkPost){
+            $query = DB::table('news_tb')->insert([
+                [
+                    'title' => $request->title,
+                    'image_url' => $request->imageUrl,
+                    'text' => htmlentities($request->html),
+                    'position' => $request->position,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]
+            ]);
+
+            $checkNewsId= DB::table('news_id')->insert([
+                [
+                    'news_id' => $id,
+                ]
+            ]);
+
+            if($query && $checkNewsId){
+                return [
+                    'data' => 1
+                ];
+            } else {
+                return [
+                    'data' => 0
+                ];
+            }
+        } else {
+            return [
+                'data' => 2
             ];
         }
 

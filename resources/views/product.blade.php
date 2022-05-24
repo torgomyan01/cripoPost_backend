@@ -1,4 +1,6 @@
 @extends('contentSite')
+
+@section('title'){{ $data[0]->title }}@endsection
 @section('content')
 
     <div class="container mt-2">
