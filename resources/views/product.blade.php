@@ -3,7 +3,9 @@
 
     <div class="container mt-2">
 
-        <img src="{{ asset('images/banner.jpeg') }}" alt="Banner" class="w-100">
+        <a href="{{ DB::table('banners_tb')->find(1)->image_url }}" target="_blank">
+            <img src="{{ DB::table('banners_tb')->find(1)->image_path }}" alt="Banner" class="w-100">
+        </a>
 
         <div class="row mt-3">
             <div class="col-3">
@@ -36,7 +38,9 @@
 
 
             <div class="col-12 col-md-4">
-                <img src="{{ asset('images/banner-right.png') }}" alt="Banner Right" class="w-100">
+                <a href="{{ DB::table('banners_tb')->find(3)->image_url }}" target="_blank">
+                    <img src="{{ DB::table('banners_tb')->find(3)->image_path }}" alt="Banner Right" class="w-100">
+                </a>
             </div>
 
         </div>

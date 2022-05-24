@@ -34,4 +34,61 @@ class BannersController extends Controller
             return 'error';
         }
     }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getBanners(Request $request): string
+    {
+
+        $banners = DB::table('banners_tb')->get();
+        return view('admin.banners', ['banners' => $banners]);
+    }
+
+
+    /**
+     * Get banner for ajax
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function getBanner(Request $request): string
+    {
+        $banners = DB::table('banners_tb')->where('id', $request->bannerId)->get();
+        return $banners;
+    }
+
+
+    /**
+     * Get banner for ajax
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function update(Request $request): string
+    {
+        $id = $request->id;
+        $file = $request->file;
+        $url = $request->url;
+
+        Storage::put('public/banners', $file);
+
+        $banner = DB::table('banners_tb')
+            ->where('id', $id)
+            ->update(
+                [
+                    'image_path' => asset('storage/banners/'.$file->hashName()),
+                    'image_url' => $url
+                ]
+            );
+
+        if($banner){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

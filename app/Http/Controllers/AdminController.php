@@ -116,12 +116,9 @@ class AdminController extends Controller
     {
 
         $file = $request->file;
-        $fileName = $file->getClientOriginalExtension();
 
 
         Storage::put('public/images', $file);
-//
-//        $imgPath = Storage::get('images/'.$file->hashName());
 
 
         $query = DB::table('news_tb')->insert([

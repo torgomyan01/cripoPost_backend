@@ -12,7 +12,7 @@
             <input class="form-control border px-2" type="file" id="formFile" name="file">
         </div>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="mt-3 d-flex">
                     <h6 class="mb-0">ЗАКРЕПЛЁННИЕ </h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto is-filled">

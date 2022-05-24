@@ -23,7 +23,7 @@
                             <small class="me-3">
                                 ID: {{ $post->id }}
                             </small>
-                            <i class="fa-solid fa-pen-to-square me-2"></i>
+{{--                            <i class="fa-solid fa-pen-to-square me-2"></i>--}}
                             <i class="fa-solid fa-trash remove__post__admin" id="{{ $post->id }}"></i>
                         </div>
 

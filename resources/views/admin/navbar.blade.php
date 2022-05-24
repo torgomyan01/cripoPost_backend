@@ -17,7 +17,7 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white active" href="./pages/dashboard.html">
+                <a class="nav-link text-white active {{ Request::url() === route('banners') ? 'bg-gradient-primary' : '' }}" href="{{ route('banners') }}">
                     <span class="nav-link-text ms-1">Banners</span>
                 </a>
             </li>

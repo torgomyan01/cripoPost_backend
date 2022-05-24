@@ -1,6 +1,8 @@
-<div class="container">
+<div class="container mt-3">
     <div class="d-flex justify-content-center align-items-center mb-3">
-        <img src="{{ asset('images/banner.jpeg') }}" alt="Banner" class="w-100">
+        <a href="{{ DB::table('banners_tb')->find(2)->image_url }}" target="_blank" class="w-100">
+            <img src="{{ DB::table('banners_tb')->find(2)->image_path }}" alt="Banner" class="w-100">
+        </a>
     </div>
 </div>
 

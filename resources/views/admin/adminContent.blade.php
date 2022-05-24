@@ -1,17 +1,4 @@
-<!--
-=========================================================
-* Material Dashboard 2 - v=3.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,8 +23,8 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css') }}?v=3.0.2" rel="stylesheet" />
-    <link id="pagestyle" href="{{ asset('assets/css/fix.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/material-dashboard.css') }}?v=3.0.2" rel="stylesheet" />
+    <link href="{{ asset('assets/css/fix.css') }}" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
 
