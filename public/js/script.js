@@ -23,3 +23,19 @@ mobileMenu.on('click', function (){
         document.body.style.overflow = 'hidden';
     }
 })
+
+
+const link = $('.info .rating-color').next('span');
+const url = link.text();
+const productBody = $('.product-body');
+
+const linkAuthor = `
+    <div class="pb-2">
+        <a href="https://${url}" target="_blank">
+            <i class="fa-solid fa-globe me-1"></i>
+            Источник
+        </a>
+    </div>
+`
+
+productBody.append(linkAuthor)

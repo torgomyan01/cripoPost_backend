@@ -263,12 +263,13 @@ a {
          object-fit: cover; }
   .product-block h3 {
     width: 100%;
-    padding: 40px;
+    padding: 2.5rem;
     text-align: center;
     color: #54595F;
     font-size: 1.3625rem;
     font-weight: 400;
-    overflow: hidden; }
+    overflow: hidden;
+    height: 9.7125rem; }
     @media (max-width: 576px) {
       .product-block h3 {
         padding: 1.25rem 1.625rem; } }
@@ -291,6 +292,14 @@ a {
     position: absolute;
     bottom: 0;
     left: 0; }
+
+.info {
+  color: #81939f;
+  font-size: 13px;
+  padding-top: 1rem;
+  margin-top: 0.5rem; }
+  .info .datetime, .info .reading-time {
+    display: none; }
 
 footer {
   width: 100%;
