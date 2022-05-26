@@ -5,17 +5,24 @@
     <form action="#" id="createPostForm">
         <div class="mb-3">
             <label for="Title" class="form-label bold">Заголовок поста</label>
-            <input type="text" class="form-control border ps-2" id="Title" placeholder="Title" name="title">
+            <input type="text" value="{{ $post->title }}" class="form-control border ps-2" id="Title" placeholder="Title" name="title">
         </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Выбрать картинку</label>
-            <input class="form-control border px-2" type="file" id="formFile" name="file">
+        <div class="row mb-3">
+            <div class="col-3">
+                <img src="{{ $post->image_url }}" alt="" style="width: 100%; border-radius: 5px">
+            </div>
+            <div class="col-9">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Выбрать картинку</label>
+                    <input class="form-control border px-2" type="file" id="formFile" name="file">
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="selectPage" class="form-label">Выбрать страницу</label>
             <select class="form-select ps-2 border" id="selectPage" name="selectPlace">
-                <option selected value="home">Все новости</option>
-                <option value="traders-blog">Трейдерский блог</option>
+                <option value="home" {{ $post->place === 'home' ? 'selected' : '' }}>Все новости</option>
+                <option value="traders-blog" {{ $post->place === 'traders-blog' ? 'selected' : '' }}>Трейдерский блог</option>
             </select>
         </div>
         <div class="row mb-3">
@@ -23,7 +30,7 @@
                 <div class="mt-3 d-flex">
                     <h6 class="mb-0">ЗАКРЕПЛЁННИЕ </h6>
                     <div class="form-check form-switch ps-0 ms-auto my-auto is-filled">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" name="position">
+                        <input class="form-check-input mt-1 ms-auto" {{ $post->position ? 'checked' : '' }} type="checkbox" name="position">
                     </div>
                 </div>
             </div>
@@ -37,7 +44,7 @@
 
     <div class="dx-viewport demo-container" style="min-height: 500px">
         <div id="btn"></div>
-        <div class="html-editor"></div>
+        <div class="html-editor">{!!  html_entity_decode($post->text) !!}</div>
     </div>
 
 
@@ -69,11 +76,12 @@
             formData.append('position', position ? 1 : 0);
             formData.append('html', html);
             formData.append('place', place);
+            formData.append('id', '{{ $post->id }}');
 
 
             $.ajax({
                 type: "POST",
-                url: '{{ route('admin-post-page') }}',
+                url: '{{ route('admin-post-edit') }}',
                 contentType: false,
                 processData: false,
                 data: formData,

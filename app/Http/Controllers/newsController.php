@@ -44,10 +44,31 @@ class newsController extends Controller
     {
         $page = $request->input('page');
         $query = DB::table('news_tb')
-            ->where('id', '>', $page || 1)
+            ->where('id', '>', $page || 0)
+            ->where('place', 'home')
             ->orderByRaw('position DESC, id DESC')
             ->paginate(15);
         return view('home', [
+            'posts' => $query
+        ]);
+    }
+
+
+    /**
+     * traders-block page get Posts
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function tradersPosts(Request $request): string
+    {
+        $page = $request->input('page');
+        $query = DB::table('news_tb')
+            ->where('id', '>', $page || 0)
+            ->where('place', 'traders-blog')
+            ->orderByRaw('position DESC, id DESC')
+            ->paginate(15);
+        return view('traders-blog', [
             'posts' => $query
         ]);
     }

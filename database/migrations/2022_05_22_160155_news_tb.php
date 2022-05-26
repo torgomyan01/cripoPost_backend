@@ -19,6 +19,7 @@ class NewsTb extends Migration
             $table->string('image_url');
             $table->text('text');
             $table->boolean('position');
+            $table->string('place');
             $table->timestamps();
         });
     }

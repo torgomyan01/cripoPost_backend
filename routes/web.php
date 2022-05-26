@@ -40,19 +40,20 @@ Route::post('/admin-panel/banner-update/{id}', [BannersController::class, 'updat
 
 Route::get('/admin-panel/create', [AdminController::class, 'createPostPage'])->name('create-post');
 
+Route::get('/admin-panel/post/edit/{id}', [AdminController::class, 'editPostPage'])->name('admin-post-edit-page');
+
 Route::post('/admin-panel/post/clip', [AdminController::class, 'postClip'])->name('admin-post-clip');
 Route::post('/admin-panel/post/remove', [AdminController::class, 'removePost'])->name('admin-post-remove');
 
 Route::post('/admin-panel/post/create', [AdminController::class, 'createPost'])->name('admin-post-page');
+Route::post('/admin-panel/post/edit', [AdminController::class, 'AjaxPostEdit'])->name('admin-post-edit');
 
 // ------------------ FOR ADMIN ------------------------------
 
 
 
 
-Route::get('/traders-blog', function () {
-    return view('traders-blog');
-})->name('traders-blog');
+Route::get('/traders-blog', [newsController::class, 'tradersPosts'])->name('traders-blog');
 
 Route::get('/ads', function () {
     return view('ads');

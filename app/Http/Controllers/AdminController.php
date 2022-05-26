@@ -27,8 +27,8 @@ class AdminController extends Controller
         $pass = session('pass');
 
         $query = DB::table('news_tb')
-            ->where('id', '>', $page || 1)
-            ->orderBy('id', 'DESC')
+            ->where('id', '>', $page || 0)
+            ->orderByRaw('position DESC, id DESC')
             ->paginate(10);
 
         if($pass === env('ADMIN_PASSWORD')){
@@ -147,6 +147,62 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Edit post page
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function editPostPage(Request $request)
+    {
+        $id = $request->id;
+        $post = DB::table('news_tb')->find($id);
+
+        return view('admin.edit-post', ['post' => $post]);
+
+    }
+
+
+    /**
+     * Ajax post edit
+     *
+     * @param Request $request
+     * @return int[]
+     */
+    public function AjaxPostEdit(Request $request): array
+    {
+        $file = $request->file;
+
+        if($file !== 'undefined'){
+            Storage::put('public/images', $file);
+        }
+
+        $post = DB::table('news_tb')->find($request->id);
+
+        $query = DB::table('news_tb')
+            ->where('id', $request->id)
+            ->update([
+                'title' => $request->title,
+                'image_url' => $file !== 'undefined' ? asset('storage/images/'.$file->hashName()) : $post->image_url,
+                'text' => htmlentities($request->html),
+                'position' => $request->position,
+                'place' => $request->place,
+            ]);
+        if($query){
+            return [
+                'code' => 200,
+                'data' => 1
+            ];
+        } else {
+            return [
+                'code' => 415,
+                'data' => 0
+            ];
+        }
+
+    }
+
+
 
     /**
      * Remove post
@@ -156,6 +212,7 @@ class AdminController extends Controller
      */
     public function createPost(Request $request)
     {
+
 
         $file = $request->file;
 
@@ -169,6 +226,7 @@ class AdminController extends Controller
                 'image_url' => asset('storage/images/'.$file->hashName()),
                 'text' => htmlentities($request->html),
                 'position' => $request->position,
+                'place' => $request->place,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
@@ -208,6 +266,7 @@ class AdminController extends Controller
                     'image_url' => $request->imageUrl,
                     'text' => htmlentities($request->html),
                     'position' => $request->position,
+                    'place' => 'home',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]
